@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ほどあい - Hodoai</title>
+  <link rel="manifest" href="manifest.json" /> <!-- 先頭のスラッシュを削除 -->
+  <meta name="theme-color" content="#FFF9F0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="ほどあい" />
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2904/2904973.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #FFF9F0; color: #4A4A4A; -webkit-tap-highlight-color: transparent; }
+    @keyframes pulse-soft { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    .animate-pulse-soft { animation: pulse-soft 2s infinite ease-in-out; }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
+  </style>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => { 
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed', err)); 
+      });
+    }
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- 修正：先頭の / も ./ も削除 -->
+  <script type="module" src="src/index.tsx"></script>
+</body>
+</html>
